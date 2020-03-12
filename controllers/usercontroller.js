@@ -16,7 +16,7 @@ router.post('/signup', (req, res) => {
 
     User.create(newUser)
         .then(createSuccess = user => {
-            let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 });
+            let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 5 });
             res.json({ user: user, message: 'user created!', sessionToken: token });
         },
             createError = err => res.send(500, err))
@@ -29,7 +29,7 @@ router.post('/login', (req, res) => {
             if (user) {
                 bcrypt.compare(req.body.password, user.password, (err, matches) => {
                     if (matches) {
-                        let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 25 });
+                        let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 5 });
                         res.json({
                             user: user,
                             message: `${user.username} successfully logged in!`,
