@@ -21,7 +21,7 @@ app.use(require('./middleware/headers'));
 app.use('/user', user);
 
 // protected routes
-app.use(require('./middleware/validate-session'));
+// app.use(require('./middleware/validate-session'));
 app.use('/trails', trails);
 
 app.listen(PORT, () => console.log(`App has become self aware on Port ${PORT}`));
