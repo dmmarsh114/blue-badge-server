@@ -33,7 +33,7 @@ router.get('/all', (req, res) => {
 });
 
 // UPDATE 
-router.put('/update/:id', validateSession, (req, res) => {
+router.put('/update/:id', (req, res) => {
     Trail.update(req.body, { where: { id: req.params.id } })
         .then(trail => res.status(200).send(`trail log updated!`))
         .catch(err => res.json({ error: err }))
